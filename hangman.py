@@ -1,4 +1,5 @@
 import random
+import json
 
 class HangmanGame:
     def __init__(self):
@@ -27,69 +28,9 @@ class HangmanGame:
 
     @staticmethod
     def display_hangman(state):
-        hangman_states = [
-            """
-             ._______.
-             |/
-             |
-             |
-             |
-             |
-             |
-         ____|___      """,
-            """
-            ._______.
-             |/      |
-             |
-             |
-             |
-             |
-             |
-         ____|___
-
-            """,
-            """
-            ._______.
-             |/      |
-             |      (_)
-             |
-             |
-             |
-             |
-         ____|___
-            """,
-            """
-            ._______.
-             |/      |
-             |      (_)
-             |       |
-             |       |
-             |
-             |
-         ____|___
-
-            """,
-            """
-            ._______.
-             |/      |
-             |      (_)
-             |      \|/
-             |       |
-             |
-             |
-         ____|___
-            """,
-            """
-            ._______.
-             |/      |
-             |      (_)
-             |      \|/
-             |       |
-             |      / \         
-         ____|___                 
-            """
-        ]
-        return hangman_states[state]
+        with open('hangman_states.json', 'r') as file:
+            hangman_states = json.load(file)
+        return hangman_states[str(state)]
 
     @staticmethod
     def get_word():
